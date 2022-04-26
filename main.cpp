@@ -10,7 +10,6 @@ public:
     Matrix(int rows, int cols)
       : rows(rows), cols(cols)
     {
-        std::srand(std::time(nullptr));
         data.reserve(rows);
         for (int i = 0; i < rows; i++)
         {
@@ -44,6 +43,10 @@ public:
         }
         std::cout << std::endl;
     }
+    Matrix operator*(const Matrix& mat2)
+    {
+        return Matrix(2, 2);
+    }
     std::vector<std::vector<int>> data;
 private:
     int rows;
@@ -52,8 +55,12 @@ private:
 
 int main()
 {
+    std::srand(std::time(nullptr));
     Matrix matrix(2, 2);
-    // std::cout << matrix.getRows() << std::endl;
     matrix.print();
+    Matrix matrix2(2, 2);
+    matrix2.print();
+    Matrix res = matrix * matrix2;
+    res.print();
     return 0;
 }
